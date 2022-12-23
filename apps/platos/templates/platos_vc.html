@@ -1,0 +1,32 @@
+{% extends "basic_generic_platos.html" %}
+
+{% block content %}
+    <div><a href="http://unmsm.edu.pe"><strong>U.N.M.S.M.</strong></a></div>
+    <p>Lista de Platillos registrados</p>
+    <div class="card-body">
+        <a type="button" class="btn btn-success" href="{% url 'plato_create_vc' %}">Crear Plato</a>
+        <form method="post">
+            {% csrf_token %}
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">Descripción de Plato</th>
+                <th scope="col">Acción</th>
+            </thead>
+
+            <tbody>
+                {% for platos in object_list %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                       <td><p>{{ platos.nombre }} el precio es {{ platos.precio }} descripcion {{ platos.descripcion }}</p></td>
+                        <td>
+                           <a type="button" class="btn btn-info" href="{% url 'plato_edit_vc' platos.id %}">Editar Plato</a>
+                           <a type="button" class="btn btn-danger" href="{% url 'plato_delete_vc' platos.id %}">Eliminar Plato</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </div>
+{% endblock %}

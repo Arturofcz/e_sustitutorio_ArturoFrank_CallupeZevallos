@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <div><a href="http://unmsm.edu.pe"><strong>U.N.M.S.M.</strong></a></div>
+    <p>Lista de Meseros registrados</p>
+    <div class="card-body">
+        <a type="button" class="btn btn-success" href="{% url 'meseros_create_vc' %}">Crear Mesero</a>
+        <form method="post">
+            {% csrf_token %}
+        <table class="table table-striped">
+            <thead>
+                <th scope="col">#</th>
+                <th scope="col">Nombre de Mesero</th>
+                <th scope="col">Acción</th>
+            </thead>
+
+            <tbody>
+                {% for meseros in object_list %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                      <td><p>{{ meseros.nombre }} Tiene la edad de {{ meseros.edad }} Procedencia {{ meseros.pais }}</p></td>
+                        <td>
+                           <a type="button" class="btn btn-info" href="{% url 'mesero_edit_vc' meseros.id %}">Editar Mesero</a>
+                           <a type="button" class="btn btn-danger" href="{% url 'mesero_delete_vc' meseros.id %}">Eliminar Mesero</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </form>
+    </div>
+{% endblock %}

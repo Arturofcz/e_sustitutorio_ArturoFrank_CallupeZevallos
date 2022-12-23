@@ -1,0 +1,33 @@
+{% extends "basic_generic_platos.html" %}
+
+
+{% block content %}
+<div><a href="http://unmsm.edu.pe" > U.N.M.S.</a> </div>
+<h2><em>Lista de Platillos del restaurante</em></h2>
+
+    <ul>
+    {% for platos in data reversed %}
+        <li>
+            <p><strong> Nombre de plato: </strong>{{ platos.nombre}}
+            <p><strong> Precio: </strong>{{ platos.precio}}
+            <p><strong> Descripcion: </strong>{{ platos.descripcion }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+
+{#    <h2>Aplicando Filtros:</h2>#}
+{##}
+{#    <ul>#}
+{#    {% for platos in data reversed %}#}
+{#        <li>#}
+{#            <p><strong> Nombre de Platillos: </strong>{{ platos.nombre|slugify}}#}
+{#        </li>#}
+{#    {% endfor %}#}
+{#    </ul>#}
+{##}
+{#    <h3> La cantidad de platillos actualmente es : {{ data|length}}</h3>#}
+
+
+
+
+{% endblock %}

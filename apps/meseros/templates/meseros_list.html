@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+<div><a href="http://unmsm.edu.pe" > U.N.M.S.</a> </div>
+<h2><em>Lista de meseros del restaurante</em></h2>
+
+    <ul>
+    {% for meseros in data reversed %}
+        <li>
+            <p><strong> Nombre de mesero: </strong>{{ meseros.nombre}}
+            <p><strong> Edad: </strong>{{ meseros.edad}}
+            <p><strong>Pais: </strong>{{ meseros.pais }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h2>Aplicando Filtros:</h2>
+
+    <ul>
+    {% for meseros in data reversed %}
+        <li>
+            <p><strong> Nombre de meseros: </strong>{{ meseros.nombre|slugify}}
+        </li>
+    {% endfor %}
+    </ul>
+
+    <h3> La cantidad de meseros actualmente es : {{ data|length}}</h3>
+
+
+
+
+{% endblock %}
+
